@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/"><h3> Student Management System</h3></a>
+    <br>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <a class="nav-link" href="/"><h5 class="red">Home</h5><span class="sr-only"></span></a>
+            {% if session.logged_in %}
+            {% if session.role == 'Teacher' %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="/add_course"><h5 class="blue">Add Course</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><h5 class="white">Dashboard</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/all_student"><h5 class="white">View All student</h5></a>
+            </li>
+
+            {% endif %}
+            {% if session.role == 'Student' %}
+            <li class="nav-item">
+                <a class="nav-link" href="/all_courses"><h5 class="white">Available Courses</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/my_courses"><h5 class="white">My Courses</h5></a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="/logout"><h5 class="white">Logout</h5><span class="sr-only"></span></a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="/signup"><h5 class="white">Sign Up</h5></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login"><h5 class="white">Login</h5><span class="sr-only"></span></a>
+            </li>
+
+            <a href="/aboutus" class="nav-item nav-link"> About Us</a>
+            <a href="/contactus" class="nav-item nav-link"> Contact Us</a>
+
+            {% endif %}
+        </ul>
+    </div>
+</nav>

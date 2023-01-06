@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="text-dark" id="dashboard">
+    <h3 class="text-center"><u>Available Courses</u></h3>
+    <p class="text-center swipe">Swipe to View the Course Material</p>
+
+
+<div class="c_search">
+<form action="/c_search" method=post>
+    <input type=text name=c_search value="{{ request.form.c_search}}" placeholder="Enter course code."></br>
+    <div class="actions"><input type=submit value="Search"></div>
+</form>
+
+</div>
+
+
+    <hr>
+    <div style="overflow-x:auto;">
+    <table class="table table-striped text-dark bg-light">
+        <tr>
+            <th>Title</th>
+            <th>Department</th>
+            <th>Subject</th>
+            <th>Faculty</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td> {{course.title}} </td>
+            <td> {{course.description}} </td>
+            <td> {{course.subject}} </td>
+            <td> {{course.author}} </td>
+            <td> {{course.issue_date}} </td>
+            <td><a href="enrolled/{{course.id}}" class="btn btn-primary pull-right">Enroll Now</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+{% endblock %}

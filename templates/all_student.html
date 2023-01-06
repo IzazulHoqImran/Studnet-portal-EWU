@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="text-dark" id="dashboard">
+    <h3 class="text-center">View All Student</h3>
+    <p class="text-center swipe">Swipe to Preview/Edit/Delete</p>
+    <hr>
+
+<div class="search">
+<form action="/search" method=post>
+    <input type=text name=search value="{{ request.form.search}}" placeholder="Enter Student Full name."></br>
+    <br>
+    <div class="actions"><input type=submit value="Search"></div>
+    <br>
+    <br>
+</form>
+
+</div>
+
+
+    <div style="overflow-x:auto;">
+    <table class="table table-striped text-dark bg-light">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for course in courses %}
+
+        <tr>
+
+            <td>{{course.name}} </td>
+            <td> {{course.email}} </td>
+            <td> {{course.username}} </td>
+
+            <td><a href="std_edit/{{course.id}}" class="btn btn-primary pull-right">Edit</a></td>
+            <td>
+                <form action="{{url_for('delete_student', id=course.id)}}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+</div>
+{% endblock %}
